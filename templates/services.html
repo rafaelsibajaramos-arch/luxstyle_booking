@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Servicios{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4 text-white" data-aos="fade-down">Nuestros servicios</h2>
+
+<div class="row g-4">
+    {% for service in services %}
+
+    <div class="col-md-4" data-aos="fade-up">
+        <div class="service-card-premium">
+
+            {% set imagen = "" %}
+            {% if "corte" in service.name.lower() %}
+                {% set imagen = "corte.jpg" %}
+            {% elif "afeitado" in service.name.lower() %}
+                {% set imagen = "afeitado.jpg" %}
+            {% elif "masaje" in service.name.lower() %}
+                {% set imagen = "masaje.jpg" %}
+            {% else %}
+                {% set imagen = "default.jpg" %}
+            {% endif %}
+
+            <div class="service-img-container">
+                <img src="{{ url_for('static', filename='img/' ~ imagen) }}" class="service-img-premium">
+            </div>
+
+            <div class="service-info">
+                <h5 class="service-title">{{ service.name }}</h5>
+                <p class="service-desc">{{ service.description }}</p>
+
+                <p><strong>Duración:</strong> {{ service.duration_minutes }} minutos</p>
+                <p><strong>Precio:</strong> ${{ '%.2f'|format(service.price) }}</p>
+
+                <a href="{{ url_for('book_appointment') }}" class="btn-book">Reservar ahora</a>
+            </div>
+
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

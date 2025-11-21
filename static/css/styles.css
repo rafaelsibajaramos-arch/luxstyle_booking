@@ -1,0 +1,449 @@
+/* ============================
+   CONFIGURACIÓN GENERAL
+============================ */
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: #f2f2f2;
+
+    /* Fondo estático super HD */
+    background-image: url("../img/fondo.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: #000;
+    position: relative;
+}
+
+/* Capa oscura elegante */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.40); /* oscurito pero no mata la nitidez */
+    z-index: -2;
+}
+
+/* Capa de brillo cinematográfico */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.08) 50%,
+        transparent 100%
+    );
+    animation: shineMove 6s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes shineMove {
+    0% { transform: translateX(-30%); }
+    100% { transform: translateX(30%); }
+}
+
+/* Grain premium opcional */
+.film-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.13;
+    mix-blend-mode: overlay;
+    z-index: 3;
+    animation: grain 1.6s steps(6) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0,0); }
+    20% { transform: translate(-10px, -10px); }
+    40% { transform: translate(10px, -10px); }
+    60% { transform: translate(-10px, 10px); }
+    80% { transform: translate(10px, 10px); }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+}
+
+/* ============================
+   NAVBAR
+============================ */
+
+.navbar {
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
+}
+
+/* ============================
+   HERO SECTION
+============================ */
+
+.hero-section {
+    min-height: 60vh;
+}
+
+.hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,.6), rgba(0,0,0,.9));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-left: 20px;
+}
+
+.hero-title {
+    color: #c8a951;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.hero-text {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.hero-btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #f2c94c, #d4af37);
+    color: #000;
+    border-radius: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s ease;
+    box-shadow: 0 0 20px rgba(255,215,0,0.4);
+}
+
+.hero-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 35px rgba(255,215,0,.7);
+}
+
+/* Imagenes del hero */
+.hero-images {
+    position: absolute;
+    right: 5%;
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+.hero-img {
+    width: 180px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 20px;
+    opacity: 0.6;
+    filter: blur(1px);
+    transition: all .4s ease;
+}
+
+.hero-img:hover {
+    transform: scale(1.15);
+    opacity: 1;
+    filter: blur(0px);
+}
+
+/* ============================
+   BOTONES DE LUJO
+============================ */
+
+.btn-hero {
+    background: linear-gradient(45deg, #c8a951, #e0c472);
+    color: #0d0d0d;
+    border-radius: 50px;
+    padding: 0.8rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+/* ============================
+   SERVICIOS PREMIUM
+============================ */
+
+.service-card {
+    background: rgba(0,0,0,0.6);
+    border-radius: 16px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    transition: 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0px 20px 40px rgba(0,0,0,0.6);
+}
+
+.service-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: 0.4s ease;
+}
+
+.service-card:hover .service-img {
+    filter: brightness(1);
+}
+
+/* PREMIUM VERSION */
+.service-card-premium {
+    background: rgba(255,255,255,0.05);
+    border-radius: 18px;
+    overflow: hidden;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    transition: .3s ease;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+.service-card-premium:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0 40px rgba(255,215,0,0.35);
+}
+
+/* Imagen premium */
+.service-img-container {
+    height: 220px;
+    overflow: hidden;
+}
+
+.service-img-premium {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .4s ease;
+}
+
+.service-card-premium:hover .service-img-premium {
+    transform: scale(1.15);
+}
+
+/* Texto */
+.service-info {
+    padding: 20px;
+    color: #ddd;
+}
+
+.service-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #f2c94c;
+}
+
+.service-desc {
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+/* Botón Premium */
+.btn-book {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #f2c94c, #d4af37);
+    color: #000;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all .3s ease;
+    box-shadow: 0 0 10px rgba(255,215,0,0.35);
+}
+
+.btn-book:hover {
+    background: linear-gradient(135deg, #ffe89a, #f2c94c);
+    box-shadow: 0 0 20px rgba(255,215,0,0.5);
+    transform: translateY(-3px);
+}
+
+/* =============================
+   AUTH PAGES (LOGIN / REGISTER)
+============================= */
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 2.8rem 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    animation: fadeInUp .8s ease;
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f2c94c;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+.auth-input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.auth-input-group label {
+    font-weight: 600;
+    color: #e6e6e6;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.auth-input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    outline: none;
+    transition: all .3s;
+    border: 1px solid transparent;
+}
+
+.auth-input-group input:focus {
+    border: 1px solid #f2c94c;
+    box-shadow: 0 0 10px rgba(255,215,0,0.4);
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #f2c94c, #d4af37);
+    border: none;
+    color: #000;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all .3s ease;
+    box-shadow: 0 0 15px rgba(255,215,0,0.35);
+}
+
+.btn-auth:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255,215,0,0.6);
+}
+
+.auth-bottom-text {
+    margin-top: 20px;
+    color: #ccc;
+}
+
+.auth-bottom-text a {
+    color: #f2c94c;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-bottom-text a:hover {
+    text-decoration: underline;
+}
+
+/* Animación */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* Tarjetas vidrio premium */
+.glass-card {
+    background: rgba(25, 25, 25, 0.70);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(210, 180, 80, 0.3);
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+/* Inputs con estilo premium */
+.glass-input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    backdrop-filter: blur(5px);
+}
+
+.glass-input:focus {
+    background: rgba(255,255,255,0.15);
+    border-color: #f2c94c;
+    box-shadow: 0 0 10px rgba(242, 201, 76, .5);
+    color: #fff;
+}
+
+/* ==== LOGO PREMIUM ==== */
+.lux-logo {
+    height: 42px;
+    width: auto;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 110, 0.3));
+    animation: glow 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.lux-logo:hover {
+    transform: scale(1.08) rotate(2deg);
+}
+
+@keyframes glow {
+    0%   { filter: drop-shadow(0 0 4px rgba(255, 215, 110, 0.2)); }
+    50%  { filter: drop-shadow(0 0 12px rgba(255, 215, 110, 0.55)); }
+    100% { filter: drop-shadow(0 0 4px rgba(255, 215, 110, 0.2)); }
+}

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Fondo general con degradado suave */
+    body {
+        background: radial-gradient(circle at center, #1a1a1a, #0e0e0e 80%);
+        background-attachment: fixed;
+    }
+
+    /* Contenedor del hero */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px;
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+        margin-top: 50px;
+    }
+
+    /* Texto */
+    .hero-title {
+        font-size: 48px;
+        font-weight: 800;
+        color: #f0d45e;
+        line-height: 1.2;
+    }
+
+    .hero-text {
+        color: #e0e0e0;
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    /* Botón */
+    .btn-hero {
+        background-color: #f0d45e;
+        border: none;
+        padding: 12px 30px;
+        margin-top: 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: 0.3s;
+        box-shadow: 0 0 20px rgba(240, 212, 94, 0.4);
+    }
+
+    .btn-hero:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 25px rgba(240, 212, 94, 0.9);
+    }
+
+    /* Grid de imágenes */
+    .image-grid {
+        display: flex;
+        gap: 20px;
+    }
+
+    .image-grid img {
+        width: 180px;
+        height: 220px;
+        border-radius: 25px;
+        object-fit: cover;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .image-grid img:hover {
+        transform: rotateY(15deg) scale(1.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+</style>
+
+<div class="container">
+
+    <div class="hero-section" data-aos="fade-up">
+
+        <!-- Texto -->
+        <div>
+            <h1 class="hero-title">Estilo y confort<br>en cada cita</h1>
+            <p class="hero-text">
+                Reserva tu servicio de barbería o spa con la mejor calidad,
+                rapidez y profesionalismo.
+            </p>
+
+            <a href="{{ url_for('book_appointment') }}" class="btn btn-hero">Reservar ahora</a>
+        </div>
+
+        <!-- Imágenes -->
+        <div class="image-grid" data-aos="fade-left">
+            <img src="{{ url_for('static', filename='img/corte.jpg') }}" alt="Corte">
+            <img src="{{ url_for('static', filename='img/afeitado.jpg') }}" alt="Afeitado">
+            <img src="{{ url_for('static', filename='img/masaje.jpg') }}" alt="Masaje">
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

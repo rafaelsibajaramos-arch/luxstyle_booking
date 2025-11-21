@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Mis Citas{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4 text-white" data-aos="fade-down">📅 Mis citas</h2>
+
+{% if appointments|length == 0 %}
+    <div class="alert alert-info text-center glass-card" data-aos="zoom-in">
+        Aún no tienes citas registradas.
+    </div>
+{% else %}
+
+<div class="row g-4">
+
+    {% for ap in appointments %}
+    <div class="col-md-6" data-aos="fade-up">
+
+        <div class="glass-card p-4 shadow-lg" style="border-radius: 20px;">
+
+            <h4 class="mb-3 fw-bold text-warning">
+                {{ ap.service.name }}
+            </h4>
+
+            <p class="text-light mb-1"><strong>Profesional:</strong> {{ ap.barber.name }}</p>
+            <p class="text-light mb-1"><strong>Fecha:</strong> {{ ap.appointment_datetime.strftime("%d/%m/%Y") }}</p>
+            <p class="text-light mb-1"><strong>Hora:</strong> {{ ap.appointment_datetime.strftime("%H:%M") }}</p>
+
+            {% if ap.notes %}
+                <p class="text-muted"><strong>Notas:</strong> {{ ap.notes }}</p>
+            {% endif %}
+
+            <!-- ESTADO DE LA CITA -->
+            <p class="mt-2">
+                {% if ap.status == "pendiente" %}
+                    <span class="badge bg-warning text-dark px-3 py-2">Pendiente</span>
+                {% elif ap.status == "aceptada" %}
+                    <span class="badge bg-success px-3 py-2">Aceptada</span>
+                {% elif ap.status == "rechazada" %}
+                    <span class="badge bg-danger px-3 py-2">Rechazada</span>
+                {% else %}
+                    <span class="badge bg-secondary px-3 py-2">{{ ap.status }}</span>
+                {% endif %}
+            </p>
+
+            <!-- CANCELAR CITA -->
+            {% if ap.status == "pendiente" %}
+                <a href="{{ url_for('cancel_user_appointment', appointment_id=ap.id) }}"
+                   class="btn btn-danger btn-sm mt-2 w-100 btn-confirm"
+                   data-message="¿Seguro que deseas cancelar esta cita?">
+                    Cancelar cita
+                </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+{% endblock %}

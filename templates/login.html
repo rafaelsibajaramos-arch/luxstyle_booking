@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+
+<div class="auth-wrapper" data-aos="fade-up">
+
+    <div class="auth-card glass-card shadow-lg">
+        
+        <h2 class="auth-title">Bienvenido de nuevo</h2>
+        <p class="auth-subtitle">Inicia sesión para continuar</p>
+
+        <form method="POST">
+            <div class="auth-input-group">
+                <label>Usuario</label>
+                <input type="text" name="username" required>
+            </div>
+
+            <div class="auth-input-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <button class="btn-auth" type="submit">Entrar</button>
+
+            <p class="auth-bottom-text">
+                ¿No tienes cuenta? 
+                <a href="{{ url_for('register') }}">Regístrate aquí</a>
+            </p>
+
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
